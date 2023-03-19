@@ -24,7 +24,7 @@ def find():
 
 
 def reed_phonebook():
-    file = open('file.txt', 'r', encoding='utf-8')
+    file = open('phonebook/file.txt', 'r', encoding='utf-8')
     lines = file.readlines()
     lst = []
     for line in lines:
@@ -34,7 +34,7 @@ def reed_phonebook():
 
 def delete(st):
     lines = reed_phonebook()
-    file = open('file.txt', 'w', encoding='utf-8')
+    file = open('phonebook/file.txt', 'w', encoding='utf-8')
     for line in lines:
         if st not in line:
             file.write(line)
@@ -42,7 +42,7 @@ def delete(st):
 
 def edit(st):
     lines = reed_phonebook()
-    file = open('file.txt', 'w', encoding='utf-8')
+    file = open('phonebook/file.txt', 'w', encoding='utf-8')
     for i in range(len(lines)):
         if st in lines[i]:
             lines[i] = lines[i].replace(st, add_contact())
