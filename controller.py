@@ -13,18 +13,20 @@ def run():
         choice = processing.get_int_input()
         if choice == 1:
             a = processing.find()
-            if a == 'error find contact':
-                print(a)
+            if a == 0:
+                view.error()
                 processing.press_any_key()
 
             else:
                 while True:
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    print(a)
+                    print(*a, sep='')
                     view.find_menu()
                     find_choice = processing.get_int_input()
                     if find_choice == 1:
-                        processing.edit(a)
+                        contacts_found = processing.edit(a)
+                        if contacts_found == 0:
+                            view.error()
                         break
                     elif find_choice == 2:
                         processing.delete(a)
@@ -34,8 +36,6 @@ def run():
                     else:
                         print('Input error')
                         processing.press_any_key()
-
-                
 
         elif choice == 2:
             processing.add_contact()
@@ -48,5 +48,3 @@ def run():
         else:
             print('Input error')
             processing.press_any_key()
-                
-    
