@@ -15,6 +15,9 @@ def run():
             a = processing.find()
             if a == 0:
                 view.empty_result()
+                add_choice = processing.get_int_input()
+                if add_choice == 1:
+                    processing.add_contact()
                 processing.press_any_key()
 
             else:
