@@ -14,7 +14,7 @@ def run():
         if choice == 1:
             a = processing.find()
             if a == 0:
-                view.error()
+                view.empty_result()
                 processing.press_any_key()
 
             else:
@@ -24,12 +24,16 @@ def run():
                     view.find_menu()
                     find_choice = processing.get_int_input()
                     if find_choice == 1:
-                        contacts_found = processing.edit(a)
-                        if contacts_found == 0:
+                        result = processing.edit(a)
+                        if result == 0:
                             view.error()
+                            processing.press_any_key()
                         break
                     elif find_choice == 2:
-                        processing.delete(a)
+                        result = processing.delete(a)
+                        if result == 0:
+                            view.error()
+                            processing.press_any_key()
                         break
                     elif find_choice == 3:
                         break

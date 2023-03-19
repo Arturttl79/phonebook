@@ -38,16 +38,24 @@ def read_phonebook():
 
 
 def delete(st):
-    lines = read_phonebook()
-    file = open('file.txt', 'w', encoding='utf-8')
-    for line in lines:
-        if st not in line:
-            file.write(line)
-    file.close()
+    if len(st) == 1:  # в случае, если найден 1 контакт
+        lines = read_phonebook()
+        file = open('file.txt', 'w', encoding='utf-8')
+        for line in lines:
+            if st[0] not in line:
+                file.write(line)
+        file.close()
+    else:  # в случае, если найдено больше контактов
+        value = get_int_input('Введите номер строки, которую хотите изменить: ')
+        if value > len(st):
+            return 0
+        else:
+            st = [st[value - 1]]
+            delete(st)
 
 
 def edit(st):
-    if len(st) == 1: #в случае, если найден 1 контакт
+    if len(st) == 1:  # в случае, если найден 1 контакт
         lines = read_phonebook()
         file = open('file.txt', 'w', encoding='utf-8')
         for i in range(len(lines)):
@@ -57,7 +65,7 @@ def edit(st):
             else:
                 file.write(lines[i])
         file.close()
-    else:
+    else:  # в случае, если найдено больше контактов
         value = get_int_input('Введите номер строки, которую хотите изменить: ')
         if value > len(st):
             return 0
